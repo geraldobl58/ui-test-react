@@ -1,0 +1,345 @@
+@use './styles/variables' as *;
+
+// Reset
+* {
+  box-sizing: border-box;
+}
+
+// App Layout
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: $spacing-xl;
+}
+
+.app-header {
+  text-align: center;
+  color: $white;
+  margin-bottom: $spacing-2xl;
+
+  h1 {
+    font-size: $font-size-4xl;
+    margin-bottom: $spacing-sm;
+    font-weight: $font-weight-bold;
+    text-shadow: 2px 2px 4px rgba($black, 0.2);
+  }
+
+  p {
+    font-size: $font-size-xl;
+    opacity: 0.9;
+  }
+}
+
+// Demo Container
+.demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.demo-section {
+  background: $bg-white;
+  border-radius: $border-radius-xl;
+  padding: $spacing-xl;
+  @include box-shadow($shadow-xl);
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: $spacing-lg;
+    color: $text-dark;
+    font-size: $font-size-2xl;
+    border-bottom: 2px solid $gray-200;
+    padding-bottom: $spacing-sm;
+  }
+
+  h3 {
+    color: $text-medium;
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-md;
+  }
+
+  h4 {
+    color: $text-light;
+    font-size: $font-size-base;
+    margin-bottom: 0.75rem;
+    margin-top: $spacing-md;
+  }
+}
+
+// Component Demo
+.component-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-xl;
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.component-preview {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.component-controls {
+  background: $bg-light;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  border: 1px solid $gray-200;
+}
+
+.control-group {
+  margin-bottom: $spacing-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+
+    span {
+      font-size: $font-size-sm;
+      color: $text-medium;
+    }
+  }
+}
+
+.selected-value {
+  padding: $spacing-md;
+  background: $bg-gray;
+  border-radius: $border-radius-md;
+  font-size: 0.95rem;
+  color: $text-dark;
+
+  code {
+    background: $gray-200;
+    padding: 2px 6px;
+    border-radius: $border-radius-sm;
+    font-family: $font-family-mono;
+    color: $primary-color;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+// Options Management
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-top: 0.75rem;
+}
+
+.option-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm 0.75rem;
+  background: $bg-white;
+  border: 1px solid $gray-200;
+  border-radius: $border-radius-md;
+  font-size: 0.9rem;
+}
+
+// Buttons
+.btn-remove {
+  background: $danger-color;
+  color: $white;
+  border: none;
+  border-radius: $border-radius-sm;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  @include transition(background-color, $transition-base);
+
+  &:hover {
+    background: $danger-hover;
+  }
+}
+
+.input-field {
+  width: 100%;
+  padding: $spacing-sm 0.75rem;
+  border: 2px solid $gray-200;
+  border-radius: $border-radius-md;
+  font-size: 0.95rem;
+  margin-bottom: $spacing-sm;
+  @include transition(border-color, $transition-base);
+
+  &:focus {
+    @include focus-ring($primary-color);
+  }
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.75rem $spacing-md;
+  background: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: 0.95rem;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  @include transition(background-color, $transition-base);
+
+  &:hover:not(:disabled) {
+    background: $primary-hover;
+  }
+
+  &:disabled {
+    background: $gray-400;
+    cursor: not-allowed;
+  }
+}
+
+.btn-secondary {
+  padding: $spacing-sm $spacing-md;
+  background: $gray-500;
+  color: $white;
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: 0.9rem;
+  cursor: pointer;
+  @include transition(background-color, $transition-base);
+
+  &:hover {
+    background: $gray-600;
+  }
+}
+
+// Event Log
+.event-log-section {
+  background: $gray-800;
+  color: $white;
+
+  h2 {
+    color: $white;
+    border-bottom-color: $gray-700;
+  }
+}
+
+.event-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-md;
+
+  h2 {
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+}
+
+.event-log {
+  background: $gray-900;
+  border-radius: $border-radius-lg;
+  padding: $spacing-md;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: $font-family-mono;
+  font-size: 0.9rem;
+}
+
+.log-entry {
+  padding: $spacing-sm;
+  border-bottom: 1px solid $gray-700;
+  color: $success-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.log-empty {
+  color: $gray-400;
+  text-align: center;
+  padding: $spacing-xl;
+  margin: 0;
+}
+
+// Documentation
+.docs-section {
+  background: $bg-light;
+}
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-xl;
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.doc-card {
+  background: $bg-white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  border: 1px solid $gray-200;
+
+  h3 {
+    margin-top: 0;
+    color: $primary-color;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    padding: $spacing-sm 0;
+    border-bottom: 1px solid $bg-gray;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  code {
+    background: $bg-gray;
+    padding: 2px 6px;
+    border-radius: $border-radius-sm;
+    font-family: $font-family-mono;
+    font-size: 0.9rem;
+    color: $primary-color;
+  }
+
+  pre {
+    background: $gray-800;
+    padding: $spacing-md;
+    border-radius: $border-radius-md;
+    overflow-x: auto;
+
+    code {
+      background: transparent;
+      color: $success-color;
+      padding: 0;
+    }
+  }
+}
+
+// Footer
+.app-footer {
+  text-align: center;
+  color: $white;
+  margin-top: $spacing-2xl;
+  padding: $spacing-xl;
+  opacity: 0.8;
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
